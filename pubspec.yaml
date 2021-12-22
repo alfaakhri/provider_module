@@ -10,6 +10,12 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  # This is our modular form git
+  network_module:
+   git: "https://github.com/alfaakhri/network_module"
+  awesome_app:
+   git: "https://github.com/alfaakhri/awesome_app"
 
 dev_dependencies:
   flutter_test:
