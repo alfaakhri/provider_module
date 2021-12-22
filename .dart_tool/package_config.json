@@ -218,6 +218,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "repository_module",
+      "rootUri": "file:///Users/macbook/flutter/.pub-cache/git/repository_module-5f054c855e6e25d2e650b8b80d786e2df68f7eaf/",
+      "packageUri": "lib/",
+      "languageVersion": "2.15"
+    },
+    {
       "name": "sky_engine",
       "rootUri": "file:///Users/macbook/flutter/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
@@ -290,7 +296,7 @@
       "languageVersion": "2.15"
     }
   ],
-  "generated": "2021-12-22T15:46:38.232590Z",
+  "generated": "2021-12-22T16:09:33.428769Z",
   "generator": "pub",
   "generatorVersion": "2.15.1"
 }

@@ -1,12 +1,13 @@
-import 'package:awesome_app/awesome_app.dart';
 import 'package:flutter/material.dart';
+import 'package:network_module/network/models/photos_model.dart';
+import 'package:repository_module/repository/repository.dart';
 
 enum Status { initial, loading, hasData, failed, noData }
 
 class PhotosProvider extends ChangeNotifier {
-  final ApiService apiService;
+  final Repository repository;
 
-  PhotosProvider({required this.apiService}) {
+  PhotosProvider({required this.repository}) {
     fetchListPhotos(5, 1);
   }
 
@@ -37,7 +38,7 @@ class PhotosProvider extends ChangeNotifier {
   void fetchListPhotos(int limit, int offset) async {
     setStatus(Status.loading);
     try {
-      PhotosModel? data = await apiService.getListPhotos(limit, offset);
+      PhotosModel? data = await repository.getListPhotos(limit, offset);
       if (_photosModel != null) {
         _photosModel!.photos!.addAll(data!.photos!);
       } else {

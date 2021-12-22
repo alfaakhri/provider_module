@@ -2,7 +2,7 @@ name: provider_module
 description: A new Flutter package project.
 version: 0.0.1
 homepage:
-
+publish_to: none
 environment:
   sdk: ">=2.15.1 <3.0.0"
   flutter: ">=1.17.0"
@@ -14,6 +14,8 @@ dependencies:
   # This is our modular form git
   network_module:
    git: "https://github.com/alfaakhri/network_module"
+  repository_module:
+   git: "https://github.com/alfaakhri/repository_module"
   awesome_app:
    git: "https://github.com/alfaakhri/awesome_app"
 

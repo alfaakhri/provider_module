@@ -253,6 +253,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.0.1"
+  repository_module:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: HEAD
+      resolved-ref: "5f054c855e6e25d2e650b8b80d786e2df68f7eaf"
+      url: "https://github.com/alfaakhri/repository_module"
+    source: git
+    version: "0.0.1"
   sky_engine:
     dependency: transitive
     description: flutter
