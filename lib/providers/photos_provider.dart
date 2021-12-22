@@ -8,7 +8,7 @@ class PhotosProvider extends ChangeNotifier {
   final Repository repository;
 
   PhotosProvider({required this.repository}) {
-    fetchListPhotos(5, 1);
+    fetchListPhotos(limit: 5, offset: 1);
   }
 
   Status _status = Status.initial;
@@ -32,10 +32,17 @@ class PhotosProvider extends ChangeNotifier {
   String _message = '';
   String get message => _message;
 
+  int _pageIndex = 0;
+  int get pageIndex => _pageIndex;
+  void setPageIndex(int pageIndex) {
+    _pageIndex = pageIndex;
+    notifyListeners();
+  }
+
   PhotosModel? _photosModel;
   PhotosModel? get photosModel => _photosModel;
 
-  void fetchListPhotos(int limit, int offset) async {
+  void fetchListPhotos({required int limit, required int offset}) async {
     setStatus(Status.loading);
     try {
       PhotosModel? data = await repository.getListPhotos(limit, offset);
