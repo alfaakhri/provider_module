@@ -46,7 +46,7 @@ class PhotosProvider extends ChangeNotifier {
   bool get hasMore => _hasMore;
 
   void clearDataPhotosPaging() {
-    _photosModel!.photos = [];
+    _photosModel = PhotosModel();
     _hasMore = true;
     notifyListeners();
   }
