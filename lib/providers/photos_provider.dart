@@ -39,21 +39,47 @@ class PhotosProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool _isLoading = true;
+  bool get isLoading => _isLoading;
+
+  bool _hasMore = true;
+  bool get hasMore => _hasMore;
+
+  void clearDataPhotosPaging() {
+    _photosModel!.photos = [];
+    _hasMore = true;
+    notifyListeners();
+  }
+
   PhotosModel? _photosModel;
   PhotosModel? get photosModel => _photosModel;
 
   void fetchListPhotos({required int limit, required int offset}) async {
-    setStatus(Status.loading);
+    _isLoading = true;
+    notifyListeners();
     try {
       PhotosModel? data = await repository.getListPhotos(limit, offset);
-      if (_photosModel != null) {
-        _photosModel!.photos!.addAll(data!.photos!);
+      if (data!.photos!.isEmpty) {
+        _isLoading = false;
+        _hasMore = false;
+        notifyListeners();
       } else {
-        _photosModel = data;
+        if (_photosModel != null) {
+          _photosModel!.photos!.addAll(data.photos!);
+        } else {
+          _photosModel = data;
+        }
+        _isLoading = false;
+        _pageIndex++;
+        notifyListeners();
+        setStatus(Status.hasData);
       }
-      setStatus(Status.hasData);
     } catch (e) {
       _message = e.toString();
+      _status = Status.failed;
+      _hasMore = false;
+      _photosModel!.photos = List<Photos>.empty();
+
       setStatus(Status.failed);
     }
   }
