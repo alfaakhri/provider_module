@@ -62,7 +62,11 @@ class PhotosProvider extends ChangeNotifier {
         notifyListeners();
       } else {
         if (_listPhotos!.isNotEmpty) {
-          _listPhotos!.addAll(data.photos!);
+          if (_listPhotos!.length < 30) {
+            _listPhotos!.addAll(data.photos!);
+          } else {
+            _hasMore = false;
+          }
         } else {
           _listPhotos = data.photos;
           _status = Status.hasData;
