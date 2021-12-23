@@ -64,7 +64,7 @@ class PhotosProvider extends ChangeNotifier {
         _hasMore = false;
         notifyListeners();
       } else {
-        if (_photosModel != null) {
+        if (_photosModel!.photos != null) {
           _photosModel!.photos!.addAll(data.photos!);
         } else {
           _photosModel = data;
