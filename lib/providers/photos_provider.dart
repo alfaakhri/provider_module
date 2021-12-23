@@ -44,6 +44,7 @@ class PhotosProvider extends ChangeNotifier {
   void clearDataPhotosPaging() {
     _listPhotos = [];
     _hasMore = true;
+    _status = Status.initial;
     notifyListeners();
   }
 
