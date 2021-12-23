@@ -46,13 +46,13 @@ class PhotosProvider extends ChangeNotifier {
   bool get hasMore => _hasMore;
 
   void clearDataPhotosPaging() {
-    _photosModel = PhotosModel();
+    _listPhotos = [];
     _hasMore = true;
     notifyListeners();
   }
 
-  PhotosModel? _photosModel;
-  PhotosModel? get photosModel => _photosModel;
+  List<Photos>? _listPhotos = [];
+  List<Photos>? get listPhotos => _listPhotos;
 
   void fetchListPhotos({required int limit, required int offset}) async {
     _isLoading = true;
@@ -64,21 +64,20 @@ class PhotosProvider extends ChangeNotifier {
         _hasMore = false;
         notifyListeners();
       } else {
-        if (_photosModel!.photos != null) {
-          _photosModel!.photos!.addAll(data.photos!);
+        if (_listPhotos!.isNotEmpty) {
+          _listPhotos!.addAll(data.photos!);
         } else {
-          _photosModel = data;
+          _listPhotos = data.photos;
         }
         _isLoading = false;
         _pageIndex++;
         notifyListeners();
-        setStatus(Status.hasData);
       }
     } catch (e) {
       _message = e.toString();
       _status = Status.failed;
       _hasMore = false;
-      _photosModel!.photos = List<Photos>.empty();
+      _listPhotos = List<Photos>.empty();
 
       setStatus(Status.failed);
     }
