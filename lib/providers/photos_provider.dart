@@ -62,6 +62,7 @@ class PhotosProvider extends ChangeNotifier {
         notifyListeners();
       } else {
         if (_listPhotos!.isNotEmpty) {
+          //TO-DO set max < 30 for control limit access
           if (_listPhotos!.length < 30) {
             _listPhotos!.addAll(data.photos!);
           } else {
