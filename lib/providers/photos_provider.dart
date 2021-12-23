@@ -44,7 +44,7 @@ class PhotosProvider extends ChangeNotifier {
   void clearDataPhotosPaging() {
     _listPhotos = [];
     _hasMore = true;
-    _status = Status.initial;
+    _status = Status.loading;
     notifyListeners();
   }
 
@@ -65,6 +65,8 @@ class PhotosProvider extends ChangeNotifier {
           _listPhotos!.addAll(data.photos!);
         } else {
           _listPhotos = data.photos;
+          _status = Status.hasData;
+          notifyListeners();
         }
         _isLoading = false;
         _pageIndex++;
