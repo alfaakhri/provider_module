@@ -5,11 +5,7 @@ import 'package:repository_module/repository/repository.dart';
 enum Status { initial, loading, hasData, failed, noData }
 
 class PhotosProvider extends ChangeNotifier {
-  final Repository repository;
-
-  PhotosProvider({required this.repository}) {
-    fetchListPhotos(limit: 5, offset: 1);
-  }
+  final Repository repository = Repository();
 
   Status _status = Status.initial;
   Status get status => _status;
